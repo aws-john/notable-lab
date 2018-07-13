@@ -1,0 +1,23 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #222;
+  height: 20px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.0em;
+}
+
+.App-intro {
+  font-size: medium;
+}
+
+.recorder {
+  height: 50px;
+  width: 120px;
+}

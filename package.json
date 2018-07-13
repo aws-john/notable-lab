@@ -1,0 +1,24 @@
+{
+  "name": "notable-beta",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "audiobuffer-to-wav": "^1.0.0",
+    "aws-amplify": "^0.4.5",
+    "aws-amplify-react": "^0.1.51",
+    "aws-appsync": "^1.1.4",
+    "aws-appsync-react": "^1.0.19",
+    "graphql-tag": "^2.9.2",
+    "react": "^16.4.1",
+    "react-apollo": "^2.1.9",
+    "react-dom": "^16.4.1",
+    "react-mic": "^9.2.0",
+    "react-scripts": "1.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

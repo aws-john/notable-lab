@@ -1,0 +1,44 @@
+[
+    {
+        "typeName": "Mutation",
+        "fieldName": "addNote",
+        "dataSourceName": "NoteTable",
+        "requestMappingTemplate": "{managed-by-awsmobile-cli}:Mutation.addNote.request",
+        "responseMappingTemplate": "{managed-by-awsmobile-cli}:Mutation.addNote.response"
+    },
+    {
+        "typeName": "Mutation",
+        "fieldName": "deleteNote",
+        "dataSourceName": "NoteTable",
+        "requestMappingTemplate": "{managed-by-awsmobile-cli}:Mutation.deleteNote.request",
+        "responseMappingTemplate": "{managed-by-awsmobile-cli}:Mutation.deleteNote.response"
+    },
+    {
+        "typeName": "Mutation",
+        "fieldName": "newNote",
+        "dataSourceName": "NoteTable",
+        "requestMappingTemplate": "{managed-by-awsmobile-cli}:Mutation.newNote.request",
+        "responseMappingTemplate": "{managed-by-awsmobile-cli}:Mutation.newNote.response"
+    },
+    {
+        "typeName": "Query",
+        "fieldName": "allNotes",
+        "dataSourceName": "NoteTable",
+        "requestMappingTemplate": "{managed-by-awsmobile-cli}:Query.allNotes.request",
+        "responseMappingTemplate": "{managed-by-awsmobile-cli}:Query.allNotes.response"
+    },
+    {
+        "typeName": "Query",
+        "fieldName": "getAllNotes",
+        "dataSourceName": "NoteTable",
+        "requestMappingTemplate": "{managed-by-awsmobile-cli}:Query.getAllNotes.request",
+        "responseMappingTemplate": "{managed-by-awsmobile-cli}:Query.getAllNotes.response"
+    },
+    {
+        "typeName": "Query",
+        "fieldName": "getNote",
+        "dataSourceName": "NoteTable",
+        "requestMappingTemplate": "{managed-by-awsmobile-cli}:Query.getNote.request",
+        "responseMappingTemplate": "{managed-by-awsmobile-cli}:Query.getNote.response"
+    }
+]

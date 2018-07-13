@@ -1,0 +1,44 @@
+type Mutation
+{
+addNote(text: String!,url: String! ): Note
+newNote(text: String!,url: String! ): Note
+updateNote(id: ID!,text: String!,url: String! ): Note
+deleteNote(id: ID! ): Note
+}
+
+type Note
+{
+id: ID!
+text: String
+url: String
+}
+
+type NoteConnection
+{
+items: [Note]
+nextToken: String
+}
+
+type Query
+{
+getNote(id: ID! ): Note
+allNotes: [Note]
+getAllNotes: [Note]!
+}
+
+type Subscription
+{
+onAddNote(id: ID,text: String,url: String ): Note
+@aws_subscribe(mutations: ["addNote"])
+onUpdateNote(id: ID,text: String,url: String ): Note
+@aws_subscribe(mutations: ["updateNote"])
+onDeleteNote(id: ID,text: String,url: String ): Note
+@aws_subscribe(mutations: ["deleteNote"])
+}
+
+schema 
+{
+query: Query
+mutation: Mutation
+subscription: Subscription
+}
