@@ -2,21 +2,24 @@ import React, { Component } from 'react';
 import { v4 as uuid } from 'uuid';
 import NoteRecorder from './NoteRecorder';
 import { Storage } from 'aws-amplify';
+import { graphql } from 'react-apollo';
 
-export default class AddNote extends Component {
+import NewNoteMutation from '../graphql/NewNoteMutation';
+import AllNotesQuery from '../graphql/AllNotesQuery';
+
+class AddNote extends Component {
     constructor(props) {
         super(props);
         this.state = this.getInitialState();
     }
 
     static defaultProps = {
-        onAdd: () => null,
-        onUpdate: () => null
+        onAdd: () => null
     }
 
     getInitialState = () => ({
         id: uuid().replace(/-/g, ''),
-        text: '',
+        text: '-',
         url: '',
     });
 
@@ -30,7 +33,6 @@ export default class AddNote extends Component {
 
     handleAdd = () => {
         const { id, text, url } = this.state;
-
         this.setState(this.getInitialState(), () => {
             this.props.onAdd({ id, text, url });
         });
@@ -51,7 +53,7 @@ export default class AddNote extends Component {
         let self = this;
         let fileReader = new FileReader();
         let arrayBuffer;
-        let noteText = ' ';
+        let noteText = '-';
         let noteID = uuid().replace(/-/g, '');
 
         // upload the compressed audio stream from the microphone
@@ -128,3 +130,24 @@ export default class AddNote extends Component {
         );
     }
 }
+
+export default graphql(NewNoteMutation, {
+    props: (props) => ({
+        onAdd: note => props.mutate({
+            variables: note,
+            optimisticResponse: () => ({ newNote: { id: '', 'text': note.text, 'url': note.url, __typename: 'Note' } }),
+        })
+    }),
+    options: {
+        refetchQueries: [{ query: AllNotesQuery }],
+        update: (dataProxy, { data: { newNote } }) => {
+            console.log(AllNotesQuery);
+            const query = AllNotesQuery;
+
+            console.log("about to readQuery");
+            // console.log(this.props.client);
+            const data = dataProxy.readQuery({ query });
+            data.allNotes.push(newNote);
+        }
+    }
+})(AddNote);

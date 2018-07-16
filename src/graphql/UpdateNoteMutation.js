@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 export default gql`
-mutation UpdateNoteMutation($id: ID!, $text: String, $url: String) {
+mutation UpdateNoteMutation($id: ID, $text: String, $url: String) {
     updateNote(
         id: $id
         text: $text
@@ -13,3 +13,4 @@ mutation UpdateNoteMutation($id: ID!, $text: String, $url: String) {
         url
     }
 }`;
+

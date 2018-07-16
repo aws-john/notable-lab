@@ -1,6 +1,14 @@
 import React, { Component } from "react";
+import { graphql, compose } from 'react-apollo';
+import { Storage } from 'aws-amplify';
 
-export default class AllNotes extends Component {
+// appsync integration
+import AllNotesQuery from '../graphql/AllNotesQuery';
+import DeleteNoteMutation from '../graphql/DeleteNoteMutation';
+import ModifyNoteMutation from '../graphql/ModifyNoteMutation';
+import NewNoteSubscription from "../subscriptions/NewNoteSubscription";
+
+class AllNotes extends Component {
     componentDidMount() {
         this.props.onRef(this)
     }
@@ -9,8 +17,45 @@ export default class AllNotes extends Component {
         super(props);
 
         this.state = {
-            editing: {}
+            editing: {},
+            updatedNotes: []
         }
+
+        console.log('notes: ', this.props.notes);
+
+        setInterval(() => {
+            for(let note of this.props.notes) {
+                let txtURL = note.url.replace(".ogg", ".txt");
+                txtURL = txtURL.split("?")[0];
+
+                if (note.text === '-') {
+                    fetch(txtURL).then((response) => {
+                        if (response.status === 200) {
+                            response.text().then((transcription) => {
+                                console.log(transcription);
+                                let updatedNote = {...note, text: transcription};
+
+                                if (note.text !== updatedNote.text) {
+                                    console.log('adding updated note to queue');
+                                    if (updatedNote.text === '')
+                                        updatedNote.text = "/";
+                                    this.state.updatedNotes = [...this.state.updatedNotes, updatedNote];
+                                }
+                            });
+                        }
+                    });
+                }
+            }
+
+            console.log('updatedNotes: ', this.state.updatedNotes);
+
+            for (let note of this.state.updatedNotes) {
+                console.log('updating: ', note);
+                this.props.onEdit(note);
+            }
+
+            this.state.updatedNotes = [];
+        }, 5000);
     }
 
     static defaultProps = {
@@ -21,8 +66,36 @@ export default class AllNotes extends Component {
 
     handleDelete = (note) => {
         if (window.confirm('Are you sure')) {
+            console.log(note);
+
             this.props.onDelete(note);
-        }
+
+            let noteID = note.url.replace('.ogg', '');
+            noteID = noteID.split('?')[0];
+            noteID = noteID.split('public/')[1];
+
+            console.log('removing: ', noteID + '.ogg');
+
+            Storage.remove(noteID + '.ogg', {
+                level: 'public'
+            })
+            .then((result) => {
+                console.log('removed ogg: ', result);
+                Storage.remove(noteID + '.wav', {
+                    level: 'public'
+                })
+                .then((result) => {
+                    Storage.remove(noteID + '.txt', {
+                        level: 'public'
+                    })
+                    .then((result) => {
+                    });
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
     }
 
     handleEdit = (note) => {
@@ -54,6 +127,7 @@ export default class AllNotes extends Component {
         const { editing } = this.state;
         const { [id]: editedNote, ...others } = editing;
 
+        console.log('editedNote: ', editedNote);
         this.props.onEdit({ ...editedNote });
 
         this.setState({
@@ -92,7 +166,13 @@ export default class AllNotes extends Component {
                                     </audio>
                                 )}
                         </td>
-                        <td>{note.text}</td>
+                        <td>                            
+                        {note.text === '/' ? (
+                                <i>empty</i>
+                            ) : (
+                                note.text
+                            )}
+                        </td>
                         {/*<td>{note.url}</td>*/}
                         <td>
                             <button onClick={this.handleEdit.bind(this, note)}>Edit</button>
@@ -125,8 +205,8 @@ export default class AllNotes extends Component {
         return (<table width="100%">
             <thead>
                 <tr>
-                    <th>audio</th>
-                    <th>text</th>
+                    <th>Voice Note</th>
+                    <th>Transcription</th>
                 </tr>
             </thead>
             <tbody>
@@ -135,3 +215,67 @@ export default class AllNotes extends Component {
         </table>);
     }
 }
+
+export default compose(
+    graphql(AllNotesQuery, {
+        props: (props) => ({
+            notes: props.data.allNotes,
+            subscribeToNewNotes: params => {
+                props.data.subscribeToMore({
+                    document: NewNoteSubscription,
+                    updateQuery: (prev, { subscriptionData: { data : { onNewNote } } }) => {
+                        console.log('new note');
+                        return {
+                            ...prev,
+                            listNotes: {
+                                __typename: 'NoteConnection',
+                                items: [onNewNote, ...prev.listNotes.items.filter(note => note.id !== onNewNote.id)]
+                            }
+                        }
+                    }
+                })
+            }
+        }),
+        options: {
+            fetchPolicy: 'cache-and-network'
+        }
+    }),
+    graphql(DeleteNoteMutation, {
+        props: (props) => ({
+            onDelete: (note) => props.mutate({
+                variables: { id: note.id },
+                optimisticResponse: () => ({ deleteNote: { ...note, __typename: 'Note' } }),
+            })
+        }),
+        options: {
+            refetchQueries: [{ query: AllNotesQuery }],
+            update: (proxy, { data: { deleteNote: { id } } }) => {
+                const query = AllNotesQuery;
+                const data = proxy.readQuery({ query });
+                data.allNotes = data.allNotes.filter(note => note.id !== id);
+                proxy.writeQuery({ query, data });
+            }
+        }
+    }),
+    graphql(ModifyNoteMutation, {
+        props: (props) => ({
+            onEdit: (note) => {
+                console.log("onEdit: ", note);
+                props.mutate({
+                    variables: { ...note },
+                    optimisticResponse: { modifyNote: {...note, __typename: 'Note'} }
+                });
+            }
+        }),
+        options: {
+            refetchQueries: [{ query: AllNotesQuery }],
+            update: (dataProxy, { data: { modifyNote } }) => {
+                const query = AllNotesQuery;
+                const data = dataProxy.readQuery({ query });
+                data.allNotes = data.allNotes.map(note => note.id !== modifyNote.id ? note : { ...modifyNote });
+                dataProxy.writeQuery({ query, data });
+                return null;
+            }
+        }
+    })
+)(AllNotes);

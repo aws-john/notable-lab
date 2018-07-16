@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ReactMic } from 'react-mic';
 
-export default class NoteRecorder extends React.Component {
+export default class NoteRecorder extends Component {
     constructor(props) {
       super(props);
       this.state = {

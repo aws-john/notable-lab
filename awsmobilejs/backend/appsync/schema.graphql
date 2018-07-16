@@ -1,14 +1,13 @@
 type Mutation
 {
-addNote(text: String!,url: String! ): Note
 newNote(text: String!,url: String! ): Note
-updateNote(id: ID!,text: String!,url: String! ): Note
+modifyNote(id: ID,text: String,url: String ): Note
 deleteNote(id: ID! ): Note
 }
 
 type Note
 {
-id: ID!
+id: ID
 text: String
 url: String
 }
@@ -28,10 +27,10 @@ getAllNotes: [Note]!
 
 type Subscription
 {
-onAddNote(id: ID,text: String,url: String ): Note
-@aws_subscribe(mutations: ["addNote"])
-onUpdateNote(id: ID,text: String,url: String ): Note
-@aws_subscribe(mutations: ["updateNote"])
+onNewNote(id: ID,text: String,url: String ): Note
+@aws_subscribe(mutations: ["newNote"])
+onModifyNote(id: ID,text: String,url: String ): Note
+@aws_subscribe(mutations: ["modifyNote"])
 onDeleteNote(id: ID,text: String,url: String ): Note
 @aws_subscribe(mutations: ["deleteNote"])
 }

@@ -1,17 +1,17 @@
 [
     {
         "typeName": "Mutation",
-        "fieldName": "addNote",
-        "dataSourceName": "NoteTable",
-        "requestMappingTemplate": "{managed-by-awsmobile-cli}:Mutation.addNote.request",
-        "responseMappingTemplate": "{managed-by-awsmobile-cli}:Mutation.addNote.response"
-    },
-    {
-        "typeName": "Mutation",
         "fieldName": "deleteNote",
         "dataSourceName": "NoteTable",
         "requestMappingTemplate": "{managed-by-awsmobile-cli}:Mutation.deleteNote.request",
         "responseMappingTemplate": "{managed-by-awsmobile-cli}:Mutation.deleteNote.response"
+    },
+    {
+        "typeName": "Mutation",
+        "fieldName": "modifyNote",
+        "dataSourceName": "NoteTable",
+        "requestMappingTemplate": "{managed-by-awsmobile-cli}:Mutation.modifyNote.request",
+        "responseMappingTemplate": "{managed-by-awsmobile-cli}:Mutation.modifyNote.response"
     },
     {
         "typeName": "Mutation",

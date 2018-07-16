@@ -23,17 +23,6 @@
             }
         },
         {
-            "name": "MemoTable",
-            "description": "DataSource for Amazon DynamoDB table MemoTable (arn:aws:dynamodb:us-east-1:123456789012:table/MemoTable)",
-            "type": "AMAZON_DYNAMODB",
-            "serviceRoleArn": "{managed-by-awsmobile-cli}",
-            "dynamodbConfig": {
-                "tableName": "MemoTable",
-                "awsRegion": "us-east-1",
-                "useCallerCredentials": false
-            }
-        },
-        {
             "name": "NoteTable",
             "description": "Data source created by the console.",
             "type": "AMAZON_DYNAMODB",
@@ -104,26 +93,6 @@
                 }
             ],
             "TableName": "AppSyncEventTable-fLsxibZ7",
-            "KeySchema": [
-                {
-                    "AttributeName": "id",
-                    "KeyType": "HASH"
-                }
-            ],
-            "ProvisionedThroughput": {
-                "ReadCapacityUnits": 5,
-                "WriteCapacityUnits": 5
-            },
-            "Region": "us-east-1"
-        },
-        {
-            "AttributeDefinitions": [
-                {
-                    "AttributeName": "id",
-                    "AttributeType": "S"
-                }
-            ],
-            "TableName": "MemoTable",
             "KeySchema": [
                 {
                     "AttributeName": "id",
