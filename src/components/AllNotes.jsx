@@ -181,7 +181,7 @@ class AllNotes extends Component {
                             )}
                         </td>
                         <td>
-                            <a class="btn red" onClick={this.handleDelete.bind(this, note)}>Delete</a>
+                            <a className="btn red" onClick={this.handleDelete.bind(this, note)}>Delete</a>
                         </td>
                     </tr>
                 ) : (
