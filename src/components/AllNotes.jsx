@@ -156,27 +156,32 @@ class AllNotes extends Component {
             !isEditing ?
                 (
                     <tr key={note.id}>
-                        {/*<td>{note.id}</td>*/}
                         <td>
                             {note.url === '-' ? (
-                                '...'
+                                '…'
                             ) : (
-                                    <audio controls>
-                                        <source src={note.url} type='audio/wav' />
-                                    </audio>
-                                )}
-                        </td>
-                        <td>                            
-                        {note.text === '/' ? (
-                                <i>empty</i>
-                            ) : (
-                                note.text
+                                <audio controls>
+                                    <source src={note.url} type='audio/wav' />
+                                </audio>
                             )}
                         </td>
-                        {/*<td>{note.url}</td>*/}
+                        <td>                            
+                            {note.text === '/' ? (
+                                <i>empty</i>
+                            ) : (
+                                note.text === '-' ? (
+                                    <div className='load-2'>
+                                        <div className='line'></div>
+                                        <div className='line'></div>
+                                        <div className='line'></div>
+                                    </div>
+                                ) : (
+                                    note.text
+                                )
+                            )}
+                        </td>
                         <td>
-                            <button onClick={this.handleEdit.bind(this, note)}>Edit</button>
-                            <button onClick={this.handleDelete.bind(this, note)}>Delete</button>
+                            <a class="btn red" onClick={this.handleDelete.bind(this, note)}>Delete</a>
                         </td>
                     </tr>
                 ) : (
@@ -206,7 +211,7 @@ class AllNotes extends Component {
             <thead>
                 <tr>
                     <th>Voice Note</th>
-                    <th>Transcription</th>
+                    <th>Transcript</th>
                 </tr>
             </thead>
             <tbody>

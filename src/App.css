@@ -3,9 +3,9 @@
 }
 
 .App-header {
-  background-color: #222;
-  height: 20px;
-  padding: 20px;
+  background-color: rgb(75, 75, 75);
+  height: 40px;
+  padding: 5px;
   color: white;
 }
 
@@ -18,6 +18,123 @@
 }
 
 .recorder {
-  height: 50px;
-  width: 120px;
+  height: 80px;
+  width: 280px;
+}
+
+.link {
+  border-bottom: 2px dotted #55acee;
+  text-decoration: none;
+  color: #55acee;
+  transition: .3s;
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+}
+
+.link:hover {
+  color: #2ecc71;
+  border-bottom: 2px dotted #2ecc71;
+}
+
+/* css for the shiny buttons */
+.btn {
+  cursor: pointer;
+  margin: 5px;
+  border-radius: 5px;
+  text-decoration: none;
+  padding: 5px;
+  font-size: 14px;
+  transition: .3s;
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+  display: inline-block;
+}
+
+.btn:hover {
+  cursor: url(http://cur.cursors-4u.net/symbols/sym-1/sym46.cur), auto;
+}
+
+.blue {
+  color: #55acee;
+  border: 2px #55acee solid;
+}
+
+.blue:hover {
+  background-color: #55acee;
+  color: #fff
+}
+
+.black {
+  color: #000000;
+  border: 2px #000000 solid;
+}
+
+.black:hover {
+  background-color: #000000;
+  color: #fff
+}
+
+.green {
+  color: #2ecc71;
+  border: 2px #2ecc71 solid;
+}
+
+.green:hover {
+  color: #fff;
+  background-color: #2ecc71;
+}
+
+.red {
+  color: #e74c3c;
+  border: 2px #e74c3c solid;
+}
+
+.red:hover {
+  color: #fff;
+  background-color: #e74c3c;
+}
+
+.purple {
+  color: #9b59b6;
+  border: 2px #9b59b6 solid;
+}
+
+.purple:hover {
+  color: #fff;
+  background-color: #9b59b6;
+}
+
+.buttons {
+  padding-top: 30px;
+  text-align: center;
+}
+
+.line {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  background-color: #55acee;
+}
+
+.load-1 .line:nth-last-child(1) {animation: loadingA 1.5s 1s infinite;}
+.load-1 .line:nth-last-child(2) {animation: loadingA 1.5s .5s infinite;}
+.load-1 .line:nth-last-child(3) {animation: loadingA 1.5s 0s infinite;}
+
+.load-2 .line:nth-last-child(1) {animation: loadingB 1.5s 1s infinite;}
+.load-2 .line:nth-last-child(2) {animation: loadingB 1.5s .5s infinite;}
+.load-2 .line:nth-last-child(3) {animation: loadingB 1.5s 0s infinite;}
+
+@keyframes loadingA {
+  0 {height: 15px;}
+  50% {height: 35px;}
+  100% {height: 15px;}
+}
+
+@keyframes loadingB {
+  0 {width: 15px;}
+  50% {width: 35px;}
+  100% {width: 15px;}
 }

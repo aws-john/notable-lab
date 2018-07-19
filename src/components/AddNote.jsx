@@ -123,9 +123,7 @@ class AddNote extends Component {
     render() {
         return (
             <div>
-                <NoteRecorder
-                    onEndRecording={this.handleOnEndRecording}
-                />
+                <NoteRecorder onEndRecording={this.handleOnEndRecording} /><br/>
             </div>
         );
     }
