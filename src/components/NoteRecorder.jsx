@@ -48,9 +48,9 @@ export default class NoteRecorder extends Component {
             onStop={this.onStop}
             strokeColor="#00FFAA"
             backgroundColor="#000000" /><br/>
-          <a class="btn black" onClick={this.startRecording} type="button">Record</a>
-          <a class="btn black" onClick={this.stopRecording} type="button">Save</a>
-          <a class="btn black" onClick={this.cancelRecording} type="button">Cancel</a>
+          <a className="btn black" onClick={this.startRecording} type="button">Record</a>
+          <a className="btn black" onClick={this.stopRecording} type="button">Save</a>
+          <a className="btn black" onClick={this.cancelRecording} type="button">Cancel</a>
         </div>
       );
     }
