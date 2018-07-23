@@ -1,0 +1,53 @@
+// MUTATIONS
+
+// - newNote
+{
+    "version" : "2017-02-28",
+    "operation" : "PutItem",
+    "key" : {
+        ## If object "id" should come from GraphQL arguments, change to $util.dynamodb.toDynamoDBJson($ctx.args.id)
+        "id": $util.dynamodb.toDynamoDBJson($util.autoId()),
+        "text": $util.dynamodb.toDynamoDBJson($ctx.args.text),
+        "url": $util.dynamodb.toDynamoDBJson($ctx.args.url)
+    },
+    "attributeValues" : $util.dynamodb.toMapValuesJson($ctx.args)
+}
+
+// - modifyNote
+{
+    "version" : "2017-02-28",
+    "operation" : "PutItem",
+    "key" : {
+        ## If object "id" should come from GraphQL arguments, change to $util.dynamodb.toDynamoDBJson($ctx.args.id)
+        "id": $util.dynamodb.toDynamoDBJson($ctx.args.id),
+        "text": $util.dynamodb.toDynamoDBJson($ctx.args.text),
+        "url": $util.dynamodb.toDynamoDBJson($ctx.args.url)
+    },
+    "attributeValues" : $util.dynamodb.toMapValuesJson($ctx.args)
+}
+
+// - deleteNote
+{
+    "version" : "2017-02-28",
+    "operation" : "DeleteItem",
+    "key" : {
+        "id" : { "S" : "${ctx.args.id}" }
+    }
+}
+
+// QUERIES
+
+// - getNote
+{
+    "version": "2017-02-28",
+    "operation": "GetItem",
+    "key": {
+        "id": $util.dynamodb.toDynamoDBJson($ctx.args.id),
+    }
+}
+
+// - allNotes
+{
+    "version" : "2017-02-28",
+    "operation" : "Scan"
+}
