@@ -7,25 +7,22 @@ import { withAuthenticator } from 'aws-amplify-react';
 import AWSAppSyncClient from 'aws-appsync';
 import { Rehydrated } from 'aws-appsync-react';
 import config from './aws-exports';
-import AppSync from './AppSync.js';
 
 // components
 
 import AddNote from './components/AddNote';
 import AllNotes from './components/AllNotes';
 
-const AUTH_TYPE = require('aws-appsync/lib/link/auth-link').AUTH_TYPE;
-
 Amplify.configure(config);
 
 const client = new AWSAppSyncClient({
-    url: AppSync.graphqlEndpoint,
-    region: AppSync.region,
+    url: config.aws_appsync_graphqlEndpoint,
+    region: config.aws_appsync_region,
     auth: {
         // Amazon Cognito Federated Identities using AWS Amplify
         // credentials: () => Auth.currentCredentials(),
 
-        type: AUTH_TYPE.AMAZON_COGNITO_USER_POOLS,
+        type: config.aws_appsync_authenticationType,
         credentials: () => Auth.currentCredentials(),
         jwtToken: async () => (await Auth.currentSession()).getAccessToken().getJwtToken()
     },
