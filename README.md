@@ -106,14 +106,14 @@ We are going to build a simple Python Lambda that is triggered when our applicat
 ## Launch the app in Preview
 Now that all the components have been built and configured, navigate to the Cloud9 Terminal and type `npm start` and select 'Preview Running Application' from the 'Preview' menu. Depending on how you have arranged your Cloud9 tabs, you should be presented with something like:
 
-<p align='center'><img style='display: block; margin-left: auto; margin-right: auto; width: 60%;' src='docs/img/cloud9-preview-shot.png' width=500px/></p>
+<p align='center'><img style='width: 60%;' src='docs/img/cloud9-preview-shot.png' width=500px/></p>
 
 If your application renders in the preview pane with a signup page, that's a good sign :) The next step is to create a Cognito user via the 'Sign Up' link. Complete the user sign-up details (ensuring that you provide a mobile number for SMS MFA). Enter the SMS confirmation code into the next form and click 'Confirm' (the enter key will have no effect). Proceed to sign in with the account details you have just supplied. The preview pane should now look something like:
 
-<img style='display: block; margin-left: auto; margin-right: auto; width: 60%;' src='docs/img/cloud9-preview-signed-in-shot.png' width=500px/>
+<p align='center'><img style='width: 60%;' src='docs/img/cloud9-preview-signed-in-shot.png' width=500px/></p>
 
 No you can record a voice memo by pressing the 'Record' to start and the 'Save' button to finish. While the application is waiting for the transcription to complete asynchronously, an activity pulse animation will be visible.
 
-<img style='display: block; margin-left: auto; margin-right: auto; width: 60%;' src='docs/img/cloud9-preview-transcribing-shot.png' width=500px/>
+<p align='center'><img style='width: 60%;' src='docs/img/cloud9-preview-transcribing-shot.png' width=500px/></p>
 
 Within a minute, the transcription should complete, and the text appear to the right of the audio playback control.
