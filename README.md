@@ -82,7 +82,7 @@ Now we've created a new MobileHub application and pointed its configuration at t
 
 Launch the AppSync console with `awsmobile appsync console` and navigate to the Schema section. Paste the contents of docs/appsync-schema.graphql into the Schema text field and select 'Save'.
 
-<img src='docs/img/appsync-schema-shot.png' width=800px/>
+<img src='docs/img/appsync-schema-shot.png' width=800px align='center'/>
 
 ### Attach the Resolvers
 To associate each of the queries and mutations we've just set in our Schema, an entry will be listed on the right of the AppSync console Schema page (under the 'Resolvers' heading), and we now need to attach each in turn. To do this open the appsync-resolvers.txt file in the docs folder and select the JSON entry under each // heading, click on the 'Attach' button and paste it into the 'Configure the request mapping template' field on the subsequent page. After you have set each mapping template, select 'Save Resolver'.
@@ -106,14 +106,14 @@ We are going to build a simple Python Lambda that is triggered when our applicat
 ## Launch the app in Preview
 Now that all the components have been built and configured, navigate to the Cloud9 Terminal and type `npm start` and select 'Preview Running Application' from the 'Preview' menu. Depending on how you have arranged your Cloud9 tabs, you should be presented with something like:
 
-<img src='docs/img/cloud9-preview-shot.png' width=500px/>
+<img src='docs/img/cloud9-preview-shot.png' width=500px align='center'/>
 
 If your application renders in the preview pane with a signup page, that's a good sign :) The next step is to create a Cognito user via the 'Sign Up' link. Complete the user sign-up details (ensuring that you provide a mobile number for SMS MFA). Enter the SMS confirmation code into the next form and click 'Confirm' (the enter key will have no effect). Proceed to sign in with the account details you have just supplied. The preview pane should now look something like:
 
-<img src='docs/img/cloud9-preview-signed-in-shot.png' width=500px/>
+<img src='docs/img/cloud9-preview-signed-in-shot.png' width=500px align='center'/>
 
 No you can record a voice memo by pressing the 'Record' to start and the 'Save' button to finish. While the application is waiting for the transcription to complete asynchronously, an activity pulse animation will be visible.
 
-<img src='docs/img/cloud9-preview-transcribing-shot.png' width=500px/>
+<img src='docs/img/cloud9-preview-transcribing-shot.png' width=500px align='center'/>
 
 Within a minute, the transcription should complete, and the text appear to the right of the audio playback control.
