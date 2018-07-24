@@ -82,7 +82,7 @@ Now we've created a new MobileHub application and pointed its configuration at t
 
 Launch the AppSync console with `awsmobile appsync console` and navigate to the Schema section. Paste the contents of docs/appsync-schema.graphql into the Schema text field and select 'Save'.
 
-<img style='display: block; margin-left: auto; margin-right: auto; width: 80%;' src='docs/img/appsync-schema-shot.png' />
+<p align='center'><img style='width: 80%;' src='docs/img/appsync-schema-shot.png' /></p>
 
 ### Attach the Resolvers
 To associate each of the queries and mutations we've just set in our Schema, an entry will be listed on the right of the AppSync console Schema page (under the 'Resolvers' heading), and we now need to attach each in turn. To do this open the appsync-resolvers.txt file in the docs folder and select the JSON entry under each // heading, click on the 'Attach' button and paste it into the 'Configure the request mapping template' field on the subsequent page. After you have set each mapping template, select 'Save Resolver'.
@@ -106,7 +106,7 @@ We are going to build a simple Python Lambda that is triggered when our applicat
 ## Launch the app in Preview
 Now that all the components have been built and configured, navigate to the Cloud9 Terminal and type `npm start` and select 'Preview Running Application' from the 'Preview' menu. Depending on how you have arranged your Cloud9 tabs, you should be presented with something like:
 
-<img style='display: block; margin-left: auto; margin-right: auto; width: 60%;' src='docs/img/cloud9-preview-shot.png' width=500px/>
+<p align='center'><img style='display: block; margin-left: auto; margin-right: auto; width: 60%;' src='docs/img/cloud9-preview-shot.png' width=500px/></p>
 
 If your application renders in the preview pane with a signup page, that's a good sign :) The next step is to create a Cognito user via the 'Sign Up' link. Complete the user sign-up details (ensuring that you provide a mobile number for SMS MFA). Enter the SMS confirmation code into the next form and click 'Confirm' (the enter key will have no effect). Proceed to sign in with the account details you have just supplied. The preview pane should now look something like:
 
