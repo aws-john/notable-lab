@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
 import './App.css';
+
+import React, { Component } from 'react';
 import Amplify, { Auth } from 'aws-amplify';
 import { ApolloProvider } from 'react-apollo';
 import { withAuthenticator } from 'aws-amplify-react';
@@ -9,6 +10,7 @@ import config from './aws-exports';
 import AppSync from './AppSync.js';
 
 // components
+
 import AddNote from './components/AddNote';
 import AllNotes from './components/AllNotes';
 
@@ -83,5 +85,7 @@ const WithProvider = () => (
         </Rehydrated>
     </ApolloProvider>
 );
+
+// wrap the cognito authorisation provider around our app component
 
 export default withAuthenticator(WithProvider, { includeGreetings: true });
