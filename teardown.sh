@@ -32,7 +32,4 @@ export KEY=id
 aws dynamodb scan --table-name $TABLE_NAME --attributes-to-get "$KEY"   --query "Items[].$KEY.S" --output text |   tr "\t" "\n" |   xargs -t -I keyvalue aws dynamodb delete-item --table-name $TABLE_NAME   --key "{\"$KEY\": {\"S\": \"keyvalue\"}}"
 echo "cleared data"
 
-git reset --hard
-git clean -f
-rm -rf awsmobilejs/backend
 
