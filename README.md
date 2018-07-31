@@ -1,5 +1,5 @@
 # Lab Instructions
-The goal of this lab is to use React and the various AWS MobileHub services along with AWS Transcribe build a simple audio notes application that asynchronously generates text transcription of voice notes. The basic flow of the lab will be:
+The goal of this lab is to use React and the various AWS MobileHub services along with AWS Transcribe build a simple audio notes application that asynchronously generates a text transcription of voice notes. The basic flow of the lab will be:
 * take a minimally configured amplify-react mobile applications shell
 * wire up the AWS AppSync backend to a DynamoDB table
 * implement an AWS Lambda function to utilise AWS Transcribe for asynchronously transcription of user data
