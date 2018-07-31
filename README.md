@@ -7,9 +7,9 @@ The goal of this lab is to use React and the various AWS MobileHub services alon
 * profit :)
 
 ## First Steps
-* Start Firefox (microphone integration in later steps will be easier if you use this browser) and log into the AWS Console with the given credentials. Ensure that the active region is set to "Oregon" (towards the top-right corner of the console)
-* Click on the Cloud9 service in the "AWS Services" list
-* Once the Cloud9 console has loaded, you will be presented with a list of environments - in the one named "amplify-transcribe-cloud9", click on the "Open IDE" button
+* start Firefox (microphone integration in later steps will be easier if you use this browser) and log into the AWS Console with the given credentials. Ensure that the active region is set to "Oregon" (towards the top-right corner of the console)
+* click on the Cloud9 service in the "AWS Services" list
+* once the Cloud9 console has loaded, you will be presented with a list of environments - in the one named "amplify-transcribe-cloud9", click on the "Open IDE" button
 
 ## Navigate The Project
 On the left of the Cloud9 environment, there should be a folder structure - expand the amplify-transcribe-cloud9 folder and note the content within the second folder. To ensure all the modules required to bootstrap the project are installed, navigate to the Cloud9 terminal and enter:
@@ -46,8 +46,8 @@ Note: when you attach the **allNotes** query, ensure that the 'Configure the res
 
 ## Implement the transcription Lambda
 We are going to build a simple Python Lambda that is triggered when our application uploads a new voice note to the S3 bucket that user files are stored in. To do this, open the Lambda console by going back to the original Cloud9 Environments tab, select "Services" from the top left region of the page, then right-click on "Lambda", selecting "Open Link in New Tab". 
-* Navigate to the newly opened Lambda console page
-* Left click on the function named "transcriber"
+* navigate to the newly opened Lambda console page
+* left click on the function named "transcriber"
 * navigate to the Function about half-way down the page:
 
 <p align='center'><img style='width: 60%;' src='docs/img/lambda-shot.png' width=500px/></p>
