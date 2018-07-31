@@ -61,7 +61,7 @@ Now that all the components have been built and configured, navigate to the Clou
 
 <p align='center'><img style='width: 60%;' src='docs/img/cloud9-preview-shot.png' width=500px/></p>
 
-If your application renders in the preview pane with a signup page, that's a good sign :) The next step is to create a Cognito user via the "Sign Up" link. Complete the user sign-up details (ensuring that you provide a mobile number - in the form +61XXXXXXXXX - for SMS MFA). Enter the SMS confirmation code into the next form and click "Confirm" (the enter key will have no effect). Proceed to sign in with the account details you have just supplied. The preview pane should now look something like:
+If your application renders in the preview pane with a signup page, that's a good sign :) The next step is to create a Cognito user via the "Sign Up" link. Complete the user sign-up details (ensuring that you provide a mobile number - in the form +61XXXXXXXXX - for SMS MFA). It is worth noting that the account sign-up process in this step has strong password requirements; a mixture of upper case, lower case, numeric and punctuation characters will be needed. Enter the SMS confirmation code into the next form and click "Confirm" (the enter key will have no effect). Proceed to sign in with the account details you have just supplied. The preview pane should now look something like:
 
 <p align='center'><img style='width: 60%;' src='docs/img/cloud9-preview-signed-in-shot.png' width=500px/></p>
 
