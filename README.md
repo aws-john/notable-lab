@@ -12,9 +12,10 @@ The goal of this lab is to use React and the various AWS MobileHub services alon
 * Once the Cloud9 console has loaded, you will be presented with a list of environments - in the one named 'amplify-transcribe-cloud9', click on the 'Open IDE' button
 
 ## Navigate The Project
-On the left of the Cloud9 environment, there should be a folder structure - expand the notable lab folder and note the content within the second folder. To ensure all the modules required to bootstrap the project are installed, navigate to the Cloud9 terminal and enter:
+On the left of the Cloud9 environment, there should be a folder structure - expand the amplify-transcribe-cloud9 folder and note the content within the second folder. To ensure all the modules required to bootstrap the project are installed, navigate to the Cloud9 terminal and enter:
 
 ```
+cd ~/environment/notable-lab
 ./startlab.sh
 ```
 
@@ -28,7 +29,15 @@ awsmobile appsync console
 
 Left-click on the URL that is printed in the terminal and select "Open".
 
-To associate each of the queries and mutations we've just set in our Schema, an entry will be listed on the right of the AppSync console Schema page (under the 'Resolvers' heading), and we now need to attach each in turn. To do this open the appsync-resolvers.txt file in the docs folder and select the JSON entry under each // heading, click on the 'Attach' button and paste it into the 'Configure the request mapping template' field on the subsequent page. After you have set each mapping template, select 'Save Resolver'. The screenshot below shows the unattached resolvers on the right:
+Once the AppSync console tab opens, click on the "Schema" link on the left. To associate each of the queries and mutations we've just set in our Schema, an entry will be listed on the right of the AppSync console Schema page (under the 'Resolvers' heading), and we now need to attach each in turn. To do this:
+* double-click to open the appsync-resolvers.txt file in the docs folder within the Cloud9 notable-lab project
+* select and copy the JSON dictionary text under each "//" heading
+* click on the 'Attach' button for the matching Mutation or Query action
+* in the data source drop-down menu, select "NoteTable"
+* take JSON text that was copied in the first step and paste it into the 'Configure the request mapping template' field
+* after you have set each mapping template, select 'Save Resolver'
+
+The screenshot below shows the unattached resolvers on the right:
 
 <p align='center'><img style='width: 60%;' src='docs/img/appsync-resolvers-shot.png' width=500px/></p>
 
