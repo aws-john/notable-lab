@@ -40,7 +40,11 @@ Once the AppSync console tab opens, click on the "Schema" link on the left. To a
 
 The screenshot below shows the unattached resolvers on the right:
 
-<p align='center'><img style='width: 60%; padding:1px;border:thin solid black;' src='docs/img/appsync-resolvers-shot.png' width=500px/></p>
+<p align='center'>
+<kbd>
+<img style='width: 60%;' src='docs/img/appsync-resolvers-shot.png' width=500px/>
+</kbd>
+</p>
 
 Note: when you attach the **allNotes** query, ensure that the 'Configure the response mapping template' drop-down is set to 'Return a list of results'.
 
