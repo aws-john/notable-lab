@@ -40,11 +40,7 @@ Once the AppSync console tab opens, click on the "Schema" link on the left. To a
 
 The screenshot below shows the unattached resolvers on the right:
 
-<p align='center'>
-<kbd>
-<img style='width: 60%;' src='docs/img/appsync-resolvers-shot.png' width=500px/>
-</kbd>
-</p>
+<p align='center'><kbd><img style='width: 60%;' src='docs/img/appsync-resolvers-shot.png' width=500px/></kbd></p>
 
 Note: when you attach the **allNotes** query, ensure that the 'Configure the response mapping template' drop-down is set to 'Return a list of results'.
 
@@ -54,9 +50,7 @@ We are going to build a simple Python Lambda that is triggered when our applicat
 * left click on the function named "transcriber"
 * navigate to the Function about half-way down the page:
 
-<p align='center'>
-<img style='width: 60%; border:5px solid black' src='docs/img/lambda-shot.png' width=500px/>
-</p>
+<p align='center'><kbd><img style='width: 60%;' src='docs/img/lambda-shot.png' width=500px/></kbd></p>
 
 * switch back to the Cloud9 tab and open "docs/transcribe-lambda.py" copying the contents
 * paste this text into the lambda_function code editor (replacing the stub code)
@@ -65,14 +59,14 @@ We are going to build a simple Python Lambda that is triggered when our applicat
 ## Launch the app in Preview
 Now that all the components have been built and configured, navigate to the Cloud9 Terminal and type `npm start` and select 'Preview Running Application' from the 'Preview' menu. Depending on how you have arranged your Cloud9 tabs, you should be presented with something like:
 
-<p align='center'><img style='width: 60%; border: #000000 1px outset;' src='docs/img/cloud9-preview-shot.png' width=500px/></p>
+<p align='center'><kbd><img style='width: 60%;' src='docs/img/cloud9-preview-shot.png' width=500px/></kbd></p>
 
 If your application renders in the preview pane with a signup page, that's a good sign :) The next step is to create a Cognito user via the "Sign Up" link. Complete the user sign-up details (ensuring that you provide a mobile number - in the form +61XXXXXXXXX - for SMS MFA). It is worth noting that the account sign-up process in this step has strong password requirements; a mixture of upper case, lower case, numeric and punctuation characters will be needed. Enter the SMS confirmation code into the next form and click "Confirm" (the enter key will have no effect). Proceed to sign in with the account details you have just supplied. The preview pane should now look something like:
 
-<p align='center'><img style='width: 60%; border: #000000 1px outset;' src='docs/img/cloud9-preview-signed-in-shot.png' width=500px/></p>
+<p align='center'><kbd><img style='width: 60%;' src='docs/img/cloud9-preview-signed-in-shot.png' width=500px/></kbd></p>
 
 No you can record a voice memo by pressing the "Record" to start and the "Save" button to finish. While the application is waiting for the transcription to complete asynchronously, an activity pulse animation will be visible.
 
-<p align='center'><img style='width: 60%; border: #000000 1px outset;' src='docs/img/cloud9-preview-transcribing-shot.png' width=500px/></p>
+<p align='center'><kbd><img style='width: 60%;' src='docs/img/cloud9-preview-transcribing-shot.png' width=500px/></kdb></p>
 
 Within a minute, the transcription should complete, and the text appear to the right of the audio playback control.
