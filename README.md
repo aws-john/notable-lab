@@ -55,7 +55,7 @@ We are going to build a simple Python Lambda that is triggered when our applicat
 * navigate to the Function about half-way down the page:
 
 <p align='center'>
-<img style='width: 60%;' border='5'src='docs/img/lambda-shot.png' width=500px/>
+<img style='width: 60%; border:5px solid black' src='docs/img/lambda-shot.png' width=500px/>
 </p>
 
 * switch back to the Cloud9 tab and open "docs/transcribe-lambda.py" copying the contents
