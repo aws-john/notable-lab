@@ -54,11 +54,9 @@ We are going to build a simple Python Lambda that is triggered when our applicat
 * left click on the function named "transcriber"
 * navigate to the Function about half-way down the page:
 
-<table><tr><td>
 <p align='center'>
-<img style='width: 60%; border: #000000 1px outset;' src='docs/img/lambda-shot.png' width=500px/>
+<img style='width: 60%;' border='5'src='docs/img/lambda-shot.png' width=500px/>
 </p>
-</td></tr></table>
 
 * switch back to the Cloud9 tab and open "docs/transcribe-lambda.py" copying the contents
 * paste this text into the lambda_function code editor (replacing the stub code)
