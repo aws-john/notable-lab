@@ -1,4 +1,4 @@
-# Lab Instructions
+# Amplify/AppSync/Transcribe Lab Instructions
 The goal of this lab is to use React and the various AWS MobileHub services along with AWS Transcribe build a simple audio notes application that asynchronously generates a text transcription of voice notes. The basic flow of the lab will be:
 * take a minimally configured amplify-react mobile applications shell
 * wire up the AWS AppSync backend to a DynamoDB table
@@ -7,7 +7,7 @@ The goal of this lab is to use React and the various AWS MobileHub services alon
 * profit :)
 
 ## First Steps
-* start Firefox (microphone integration in later steps will be easier if you use this browser) and log into the AWS Console with the given credentials. Ensure that the active region is set to "Oregon" (towards the top-right corner of the console)
+* start Firefox (microphone integration in later steps will be easier if you use this browser) and log into the AWS Console with the given credentials (https://console.aws.amazon.com/console/home). Ensure that the active region is set to "Oregon" (towards the top-right corner of the console)
 * click on the Cloud9 service in the "AWS Services" list
 * once the Cloud9 console has loaded, you will be presented with a list of environments - in the one named "amplify-transcribe-cloud9", click on the "Open IDE" button
 
@@ -70,3 +70,10 @@ No you can record a voice memo by pressing the "Record" to start and the "Save" 
 <p align='center'><kbd><img style='width: 60%;' src='docs/img/cloud9-preview-transcribing-shot.png' width=500px/></kdb></p>
 
 Within a minute, the transcription should complete, and the text appear to the right of the audio playback control.
+
+## Further Reading
+
+* AWS AppSync & GraphQL - https://docs.aws.amazon.com/appsync/latest/devguide/designing-a-graphql-api.html
+* Getting started with Amazon Transcribe - https://aws.amazon.com/blogs/aws/amazon-transcribe-scalable-and-accurate-automatic-speech-recognition/
+* AWS Mobile Hub - https://aws.amazon.com/mobile/
+* AWS Amplify & Mobile CLI - https://aws.amazon.com/blogs/mobile/announcing-aws-amplify-and-the-aws-mobile-cli/
