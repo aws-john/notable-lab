@@ -4,7 +4,8 @@
 aws lambda update-function-code --function-name transcriber --zip-file fileb://docs/empty-lambda.zip
 
 # detach the appsync resolvers
-export API_ID="$(jq '.apiId' awsmobilejs/.awsmobile/info/appsync-info.json | tr -d '"')"
+export API_ID="$(jq '.api.lab.output.GraphQLAPIIdOutput' amplify/backend/amplify-meta.json | tr -d '"')"
+
 aws appsync delete-resolver --api-id $API_ID --type Query --field-name allNotes
 aws appsync delete-resolver --api-id $API_ID --type Query --field-name getNote
 aws appsync delete-resolver --api-id $API_ID --type Mutation --field-name newNote
@@ -12,8 +13,10 @@ aws appsync delete-resolver --api-id $API_ID --type Mutation --field-name modify
 aws appsync delete-resolver --api-id $API_ID --type Mutation --field-name deleteNote
 
 # delete the users
-export POOL_ID="$(grep 'aws_user_pools_id' src/aws-exports.js | tr ':' '\n' | tr -d " '," | tail -n1)"export POOL_ID="$(grep 'aws_user_pools_id' src/aws-exports.js | tr ':' '\n' | tr -d " '," | tail -n1)"
+#export POOL_ID="$(grep 'aws_user_pools_id' src/aws-exports.js | tr ':' '\n' | tr -d " '," | tail -n1)"
+export POOL_ID="$(grep 'aws_user_pools_id' src/aws-exports.js | tr ':' '\n' | tr -d " '," | tail -n1)"
 export USERS=USERS="$(aws cognito-idp list-users  --user-pool-id ${POOL_ID} | grep Username | awk -F: '{print $2}' | sed -e 's/\"//g' | sed -e 's/,//g')"
+
 if [ ! "x$USERS" = "x" ] ; then
     for user in $USERS; do
 	echo "Deleting user $user"

@@ -17,9 +17,13 @@ def lambda_handler(event, context):
         transcribe = boto3.client('transcribe')
         bucket = event['Records'][0]['s3']['bucket']['name']
         path = event['Records'][0]['s3']['object']['key']
-        job_uri = 'https://' + bucket + '.s3.amazonaws.com/' + path
+        job_uri = 'https://s3.amazonaws.com/' + bucket +'/' + path
         print(job_uri)
-        job_name = key.replace('public/', '').replace('.wav', '')
+        job_name = key.replace('private/', '').replace('.wav', '').replace(':', '').replace('/', '')
+        output_name = key.replace('.wav', '.txt')
+        print(output_name)
+        print(key)
+        print(job_name)
         transcribe.start_transcription_job(
             TranscriptionJobName = job_name,
             Media = {'MediaFileUri': job_uri},
@@ -38,7 +42,10 @@ def lambda_handler(event, context):
         transcript_contents = urllib.request.urlopen(transcriptURI).read()
         transcript = json.loads(transcript_contents)
         print(transcript['results']['transcripts'][0]['transcript'])
-        s3.put_object(ACL='public-read', Body=bytes(transcript['results']['transcripts'][0]['transcript'], 'utf-8'), Bucket=bucket, Key='public/'+job_name+'.txt')
+        s3response = s3.put_object(ACL='public-read-write', Body=bytes(transcript['results']['transcripts'][0]['transcript'], 'utf-8'), Bucket=bucket, Key=output_name)
+        print(output_name)
+        print(bucket)
+        print(s3response)
         print('uploaded transcript')
         
     except Exception as e:

@@ -1,5 +1,7 @@
 # Amplify/AppSync/Transcribe Lab Instructions
+
 The goal of this lab is to use React and the various AWS MobileHub services along with AWS Transcribe build a simple audio notes application that asynchronously generates a text transcription of voice notes. The basic flow of the lab will be:
+
 * take a minimally configured amplify-react mobile applications shell
 * wire up the AWS AppSync backend to a DynamoDB table
 * implement an AWS Lambda function to utilise AWS Transcribe for asynchronously transcription of user data
@@ -7,11 +9,13 @@ The goal of this lab is to use React and the various AWS MobileHub services alon
 * profit :)
 
 ## First Steps
+
 * start Firefox (microphone integration in later steps will be easier if you use this browser) and log into the AWS Console with the given credentials (https://console.aws.amazon.com/console/home). Ensure that the active region is set to "Oregon" (towards the top-right corner of the console)
 * click on the Cloud9 service in the "AWS Services" list
 * once the Cloud9 console has loaded, you will be presented with a list of environments - in the one named "amplify-transcribe-cloud9", click on the "Open IDE" button
 
 ## Navigate The Project
+
 On the left of the Cloud9 environment, there should be a folder structure - expand the amplify-transcribe-cloud9 folder and note the content within the second folder. To ensure all the modules required to bootstrap the project are installed, navigate to the Cloud9 terminal and enter:
 
 ```
@@ -21,15 +25,16 @@ cd ~/environment/notable-lab
 
 ## Attach the AppSync Resolvers
 
-The application we are building in this lab uses a subset of the rich functionality available through GraphQL and AWS AppSync, but in this case AppSync can be considered an object mapping layer, with the GraphQL schema mapping queries and mutations to actions on a user DynamoDB table via "Resolvers". Now that we have the base notable-lab project open in a Cloud9 tab, we should use the awsmobile CLI to open the relevant AppSync console page to configure our resolvers. To do this enter the following command in the Cloud9 terminal pane:
+The application we are building in this lab uses a subset of the rich functionality available through GraphQL and AWS AppSync, but in this case AppSync can be considered an object mapping layer, with the GraphQL schema mapping queries and mutations to actions on a user DynamoDB table via "Resolvers". Now that we have the base notable-lab project open in a Cloud9 tab, we should use the amplify CLI to open the relevant AppSync console page to configure our resolvers. To do this enter the following command in the Cloud9 terminal pane:
 
 ```
-awsmobile appsync console
+amplify appsync console
 ```
 
 Left-click on the URL that is printed in the terminal and select "Open".
 
 Once the AppSync console tab opens, click on the "Schema" link on the left. To associate each of the two queries and three mutations we've just set in our Schema, an entry will be listed on the right of the AppSync console Schema page (under the 'Resolvers' heading), and we now need to attach each in turn. To do this:
+
 * double-click to open the appsync-resolvers.txt file in the docs folder within the Cloud9 notable-lab project
 * select and copy the JSON dictionary text under each "//" heading
 * click on the 'Attach' button for the matching Mutation or Query action
@@ -45,7 +50,9 @@ The screenshot below shows the unattached resolvers on the right:
 Note: when you attach the **allNotes** query, ensure that the 'Configure the response mapping template' drop-down is set to 'Return a list of results'.
 
 ## Implement the transcription Lambda
-We are going to build a simple Python Lambda that is triggered when our application uploads a new voice note to the S3 bucket that user files are stored in. To do this, open the Lambda console by going back to the original Cloud9 Environments tab, select "Services" from the top left region of the page, then right-click on "Lambda", selecting "Open Link in New Tab". 
+
+We are going to build a simple Python Lambda that is triggered when our application uploads a new voice note to the S3 bucket that user files are stored in. To do this, open the Lambda console by going back to the original Cloud9 Environments tab, select "Services" from the top left region of the page, then right-click on "Lambda", selecting "Open Link in New Tab".
+
 * navigate to the newly opened Lambda console page
 * left click on the function named "transcriber"
 * navigate to the Function about half-way down the page:
@@ -57,6 +64,7 @@ We are going to build a simple Python Lambda that is triggered when our applicat
 * click the "Save" button towards the top-right of the Lambda tab
 
 ## Launch the app in Preview
+
 Now that all the components have been built and configured, navigate to the Cloud9 Terminal and type `npm start` and select 'Preview Running Application' from the 'Preview' menu. Depending on how you have arranged your Cloud9 tabs, you should be presented with something like:
 
 <p align='center'><kbd><img style='width: 60%;' src='docs/img/cloud9-preview-shot.png' width=500px/></kbd></p>
@@ -73,7 +81,7 @@ Within a minute, the transcription should complete, and the text appear to the r
 
 ## Further Reading
 
-* AWS AppSync & GraphQL - https://docs.aws.amazon.com/appsync/latest/devguide/designing-a-graphql-api.html
-* Getting started with Amazon Transcribe - https://aws.amazon.com/blogs/aws/amazon-transcribe-scalable-and-accurate-automatic-speech-recognition/
-* AWS Mobile Hub - https://aws.amazon.com/mobile/
-* AWS Amplify & Mobile CLI - https://aws.amazon.com/blogs/mobile/announcing-aws-amplify-and-the-aws-mobile-cli/
+* AWS AppSync & GraphQL - <https://docs.aws.amazon.com/appsync/latest/devguide/designing-a-graphql-api.html>
+* Getting started with Amazon Transcribe - <https://aws.amazon.com/blogs/aws/amazon-transcribe-scalable-and-accurate-automatic-speech-recognition/>
+* AWS Mobile Hub - <https://aws.amazon.com/mobile/>
+* AWS Amplify - <https://aws.amazon.com/blogs/mobile/announcing-aws-amplify-and-the-aws-mobile-cli/>

@@ -5,19 +5,20 @@ import Amplify, { Auth } from 'aws-amplify';
 import { ApolloProvider } from 'react-apollo';
 import { withAuthenticator } from 'aws-amplify-react';
 import AWSAppSyncClient from 'aws-appsync';
-import { Rehydrated } from 'aws-appsync-react';
+import { Rehydrated } from 'aws-appsync-react'; 
 import config from './aws-exports';
 
 // components
 
 import AddNote from './components/AddNote';
 import AllNotes from './components/AllNotes';
+console.log(config);
 
 Amplify.configure(config);
 
 const client = new AWSAppSyncClient({
     url: config.aws_appsync_graphqlEndpoint,
-    region: config.aws_appsync_region,
+    region: config.aws_project_region,
     auth: {
         // Amazon Cognito Federated Identities using AWS Amplify
         // credentials: () => Auth.currentCredentials(),
