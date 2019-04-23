@@ -13,13 +13,11 @@ cd notable-lab
 npm i
 npm i aws-amplify aws-amplify-react
 
-amplify init
+#amplify init
+#amplify api add
+#amplify storage add
 
-amplify auth add
-amplify storage add
-amplify api add
-
-amplify push
+#amplify push
 
 # - enable 'Amazon Cognito User Pool'
 # - set the region to 'US-EAST-1'
