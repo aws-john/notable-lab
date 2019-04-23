@@ -4,21 +4,27 @@
   "private": true,
   "dependencies": {
     "audiobuffer-to-wav": "^1.0.0",
-    "aws-amplify": "^0.4.5",
-    "aws-amplify-react": "^0.1.51",
-    "aws-appsync": "^1.1.4",
-    "aws-appsync-react": "^1.0.19",
-    "graphql-tag": "^2.9.2",
-    "react": "^16.4.1",
-    "react-apollo": "^2.1.9",
-    "react-dom": "^16.4.1",
-    "react-mic": "^9.2.0",
-    "react-scripts": "1.1.4"
+    "aws-amplify": "^1.1.24",
+    "aws-amplify-react": "^2.3.4",
+    "aws-appsync": "^1.7.2",
+    "aws-appsync-react": "^1.2.7",
+    "graphql-tag": "^2.10.1",
+    "react": "^16.8.6",
+    "react-apollo": "^2.5.4",
+    "react-dom": "^16.8.6",
+    "react-mic": "^12.4.1",
+    "react-scripts": "2.1.8"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { v4 as uuid } from 'uuid';
 import NoteRecorder from './NoteRecorder';
-import { Storage } from 'aws-amplify';
+import { Storage, Auth } from 'aws-amplify';
 import { graphql } from 'react-apollo';
 
 import NewNoteMutation from '../graphql/NewNoteMutation';
@@ -49,24 +49,27 @@ class AddNote extends Component {
         this.setState(this.getInitialState());
     }
 
-    handleOnEndRecording = (audioBlob) => {
+    handleOnEndRecording = async (audioBlob) => {
         let self = this;
         let fileReader = new FileReader();
         let arrayBuffer;
         let noteText = '-';
         let noteID = uuid().replace(/-/g, '');
 
+        console.log('end recording', audioBlob);
+        console.log(await Auth.currentCredentials());
+	
         // upload the compressed audio stream from the microphone
         // - do this first for UI
         Storage.put(noteID + '.ogg', audioBlob, {
-                level: 'public',
+                level: 'private',
                 contentType: 'audio/ogg'
             })
             .then((result) => {
                 console.log(result);
-                Storage.get(noteID + '.ogg', { level: 'public' })
+                Storage.get(noteID + '.ogg', { level: 'private' })
                     .then(result => {
-                        console.log('uploaded compressed stream');
+                        console.log('uploaded compressed stream', result);
                         // create a new note with an 'empty' url marker
                         self.setState({
                             id: noteID,
@@ -98,11 +101,11 @@ class AddNote extends Component {
                 let noteFilename = noteID + '.wav';
 
                 Storage.put(noteFilename, wav, {
-                        level: 'public',
+                        level: 'private',
                         contentType: 'audio/wav'
                     })
                     .then((result) => {
-                         Storage.get(noteFilename, { level: 'public' })
+                         Storage.get(noteFilename, { level: 'private' })
                             .then(result => {
                                 console.log('wav file: ', result)
                             })

@@ -25,25 +25,37 @@ class AllNotes extends Component {
 
         setInterval(() => {
             for(let note of this.props.notes) {
-                let txtURL = note.url.replace(".ogg", ".txt");
-                txtURL = txtURL.split("?")[0];
+                let txtURL = '';
 
                 if (note.text === '-') {
-                    fetch(txtURL).then((response) => {
-                        if (response.status === 200) {
-                            response.text().then((transcription) => {
-                                console.log(transcription);
-                                let updatedNote = {...note, text: transcription};
-
-                                if (note.text !== updatedNote.text) {
-                                    console.log('adding updated note to queue');
-                                    if (updatedNote.text === '')
-                                        updatedNote.text = "/";
-                                    this.state.updatedNotes = [...this.state.updatedNotes, updatedNote];
-                                }
-                            });
-                        }
-                    });
+                    let tmp = note.url.replace(".ogg", ".txt");
+                    console.log(tmp.split("?")[0].split("/"));
+                    tmp = tmp.split("?")[0].split("/")[5];
+                    let noteFilename = tmp;
+                    console.log('noteFilename', noteFilename);
+                    Storage.get(noteFilename, { level: 'private' })
+                    .then(result => {
+                        console.log('txt file: ', result);
+                        txtURL = result;
+                        fetch(txtURL).then((response) => {
+                            if (response.status === 200) {
+                                response.text().then((transcription) => {
+                                    console.log(transcription);
+                                    let updatedNote = {...note, text: transcription};
+    
+                                    if (note.text !== updatedNote.text) {
+                                        console.log('adding updated note to queue');
+                                        if (updatedNote.text === '')
+                                            updatedNote.text = "/";
+                                        this.state.updatedNotes = [...this.state.updatedNotes, updatedNote];
+                                    }
+                                });
+                            } else {
+                                console.log(response);
+                            } 
+                        });
+                    })
+                    .catch(err => console.log(err));
                 }
             }
 
