@@ -28,7 +28,14 @@ cd ~/environment/notable-lab
 amplify init
 ```
 
+* When asked for the lab and environment name,
+    give ```notable```
+    and
+    ```notable```
+    respectively
+
 * When prompted, select
+   
     ```
     > “Visual Studio Code”
     ```
@@ -56,9 +63,14 @@ amplify init
 
 ## Add the AppSync Backend
 
+Enter the command
+
 ```
 amplify add api
 ```
+
+and respond to the prompts with the following:
+
 * When prompted for the mentioned service, select
     ```
     > GraphQL
@@ -66,7 +78,7 @@ amplify add api
 
 * When prompted for the api name, give
     ```
-    > notable
+    > api
     ```
 
 * When prompted for 'authorization type', select
@@ -76,7 +88,11 @@ amplify add api
 
 * When prompted for the 'default authentication and security configuration', select
     ```
-    > Yes, use the default configuration.
+    > Default configuration.
+
+    > Username
+
+    o Email
     ```
 
 * When asked 'Do you have an annotated GraphQL schema?', select
@@ -99,9 +115,13 @@ Note: based on the selection of Cognito, this action also adds the 'auth' amplif
 
 ## Add Storage (S3)
 
+Enter the command
+
 ```
 amplify add storage
 ```
+
+and respond to the prompts with the following:
 
 * When prompted for one of 'the below mentioned services', select
     ```
@@ -109,26 +129,32 @@ amplify add storage
     ```
 
 * When asked for 'a friendly name for your resource', accept the default
-* When asked to 'provide a bucket name', accept the default
+* When asked to 'provide a bucket name', give ```lab-content```
 * When asked 'Who should have access', select
     ```
     > Auth users only
     ```
-* When asked 'What kind of access do you want for Authenticated users?', select
+* When asked 'What kind of access do you want for Authenticated users?', press the space bar to select
     ```
-    > read/write
+    > create/update
+    > delete
+    > read
     ```
 
 ## Push the Amplify Configuration
+
+Enter the command
 
 ```
 amplify push
 ```
 
+and respond to the prompts with the following:
+
 * When asked if you're sure you want to continue, press return
 * When asked if 'you want to generate code for your newly created GraphQL API', give 'n'
 
-At this point, amplify will build the Cloud Formation for your amplify project.
+At this point, amplify will build the Cloud Formation for your amplify project, which can take a few minutes to complete.
 
 ## Test!
 Assuming the push command completed successfully, type
@@ -172,6 +198,12 @@ We are going to build a simple Python Lambda that is triggered when our applicat
 * switch back to the Cloud9 tab and open "docs/transcribe-lambda.py" copying the contents
 * paste this text into the lambda_function code editor (replacing the stub code)
 * click the "Save" button towards the top-right of the Lambda tab
+
+Once this is complete, we need to connect object creation events in the application s3 bucket to the transcription lambda. To do this, type:
+
+```
+./docs/s3connect.sh
+```
 
 ## Launch the app in Preview
 
