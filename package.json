@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "audiobuffer-to-wav": "^1.0.0",
-    "aws-amplify": "^1.1.24",
-    "aws-amplify-react": "^2.3.4",
+    "aws-amplify": "^1.1.26",
+    "aws-amplify-react": "^2.3.6",
     "aws-appsync": "^1.7.2",
     "aws-appsync-react": "^1.2.7",
     "graphql-tag": "^2.10.1",
@@ -13,7 +13,7 @@
     "react-apollo": "^2.5.4",
     "react-dom": "^16.8.6",
     "react-mic": "^12.4.1",
-    "react-scripts": "2.1.8"
+    "react-scripts": "^3.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
