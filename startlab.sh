@@ -2,3 +2,4 @@
 
 sh ./teardown.sh
 
+git pull origin master
