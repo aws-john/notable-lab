@@ -129,7 +129,7 @@ and respond to the prompts with the following:
     ```
 
 * When asked for 'a friendly name for your resource', accept the default
-* When asked to 'provide a bucket name', give ```lab-content```
+* When asked to 'provide a bucket name', accept the default but ensure you make note of the suggested name by selecting and copying it
 * When asked 'Who should have access', select
     ```
     > Auth users only
@@ -202,7 +202,7 @@ We are going to build a simple Python Lambda that is triggered when our applicat
 Once this is complete, we need to connect object creation events in the application s3 bucket to the transcription lambda. To do this, type:
 
 ```
-./docs/s3connect.sh
+./docs/s3connect.sh {PASTE COPIED BUCKET NAME HERE}
 ```
 
 ## Launch the app in Preview

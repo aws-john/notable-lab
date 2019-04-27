@@ -12,5 +12,3 @@ cd notable-lab
 
 npm i
 npm i aws-amplify aws-amplify-react
-
-
