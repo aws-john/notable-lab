@@ -10,7 +10,7 @@ The goal of this lab is to use React, AWS AppSync and supporting services (S3, D
 
 ## First Steps
 
-* start Firefox (microphone integration in later steps will be easier if you use this browser) and log into the AWS Console with the given credentials (https://console.aws.amazon.com/console/home). Ensure that the active region is set to "Oregon" (towards the top-right corner of the console)
+* start Firefox (microphone integration in later steps will be easier if you use this browser) and log into the AWS Console with the given credentials (https://console.aws.amazon.com/console/home). Ensure that the active region is set to "N. Virginia" (towards the top-right corner of the console)
 * click on the Cloud9 service in the "AWS Services" list
 * once the Cloud9 console has loaded, you will be presented with a list of environments - in the one named "amplify-transcribe-cloud9", click on the "Open IDE" button
 
