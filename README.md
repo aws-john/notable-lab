@@ -35,7 +35,7 @@ amplify init
     respectively
 
 * When prompted, select
-   
+  
     ```
     > “Visual Studio Code”
     ```
@@ -165,15 +165,21 @@ npm start
 
 which will launch a local instance of the application.
 
+## Apply the GraphQL Schema
+
+Now we have the React front-end working, we need to configure the GraphQL schema for the AppSync backend. To do this, open the AppSync console by going back to the original Cloud9 Environments tab, select "Services" from the top left region of the page, then right-click on "AppSync", selecting "Open Link in New Tab".
+
+Once the AppSync console tab opens, select the API named "api-notable", click on the "Schema" link on the left. Copy the contents of the file "docs/appsync-schema.graphql" and replace the contents of the "Schema" text area in the AppSync console with this. Select "Save Schema".
+
 ## Attach the AppSync Resolvers
 
 The application we are building in this lab uses a subset of the rich functionality available through GraphQL and AWS AppSync, but in this case AppSync can be considered an object mapping layer, with the GraphQL schema mapping queries and mutations to actions on a user DynamoDB table via "Resolvers". Now that we have the base notable-lab project open in a Cloud9 tab, we should open the relevant AppSync console page to configure our resolvers. To do this, open the AppSync console by going back to the original Cloud9 Environments tab, select "Services" from the top left region of the page, then right-click on "AppSync", selecting "Open Link in New Tab".
 
-Once the AppSync console tab opens, select the API named ", click on the "Schema" link on the left. To associate each of the two queries and three mutations we've just set in our Schema, an entry will be listed on the right of the AppSync console Schema page (under the 'Resolvers' heading), and we now need to attach each in turn. To do this:
+Once the AppSync console tab opens, select the API named "api-notable", click on the "Schema" link on the left. To associate each of the two queries and three mutations we've just set in our Schema, an entry will be listed on the right of the AppSync console Schema page (under the 'Resolvers' heading), and we now need to attach each in turn. To do this:
 
 * double-click to open the appsync-resolvers.txt file in the docs folder within the Cloud9 notable-lab project
 * select and copy the JSON dictionary text under each "//" heading
-* click on the 'Attach' button for the matching Mutation or Query action
+* click on the 'Attach' button (or click on the 'NoteTable' link if it's not a button) for the matching Mutation or Query action
 * in the data source drop-down menu, select "NoteTable"
 * take JSON text that was copied in the first step and paste it into the 'Configure the request mapping template' field (delete the sample text first)
 * after you have set each mapping template, select 'Save Resolver'
